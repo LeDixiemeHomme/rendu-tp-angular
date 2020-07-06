@@ -9,7 +9,7 @@ import { UsersService } from './users.service';
 })
 export class UsersComponent implements OnInit{
   users: {id: number, name: string}[] = [];
-  url
+  startUrl: string;
 
   constructor(private usersService: UsersService, private route: ActivatedRoute, private router: Router) {
   }
@@ -17,8 +17,8 @@ export class UsersComponent implements OnInit{
   ngOnInit(): void {
     this.users = this.usersService.getUsers();
     if (this.users.length > 0){
-      this.url = this.users[0].id + '/' + this.users[0].name;
-      this.router.navigate([this.users[0].id, '/', this.users[0].name], {relativeTo: this.route});
+      this.startUrl = this.users[0].id + '/' + this.users[0].name;
+      this.router.navigate([this.startUrl], {relativeTo: this.route});
     }
   }
 
